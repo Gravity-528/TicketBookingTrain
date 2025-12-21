@@ -8,3 +8,5 @@ class Coupon(Base):
     discount=Column(Integer)
     type=Column(Enum(["Flat","Percentage"]))
     description=Column(String(100))
+    deadline=Column(DATETIME)
+    min_fare=Column(Integer)
