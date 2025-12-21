@@ -15,13 +15,10 @@ class SeatService:
             .all()
         )
 
-
         booked_seat_ids = {seat.seatId for seat in seat_booked}
-
         total_seats = db.query(Seat).all()
-
         final_seat = []
-
+        
         for seat in total_seats:
             if seat.id in booked_seat_ids:
                 final_seat.append({
