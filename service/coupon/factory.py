@@ -8,6 +8,7 @@ def FactoryCoupon(discount_type:str):
     
     elif discount_type=="flat":
         return FlatDiscount()
-    
+
+    raise ValueError("incorrect coupon type")    
     
 
