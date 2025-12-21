@@ -3,14 +3,15 @@ from sqlalchemy.orm import Session
 from pydantic import BaseModel
 from datetime import datetime
 from model import Coupon
+from schema.coupon_schema import Coupon_schema
 
-class Coupon_schema(BaseModel):
-    couponId:str
-    discount:int
-    type:str
-    description:str
-    deadline:datetime
-    min_fare:int
+# class Coupon_schema(BaseModel):
+#     couponId:str
+#     discount:int
+#     type:str
+#     description:str
+#     deadline:datetime
+#     min_fare:int
 
 
 class Validator(ABC):
@@ -27,10 +28,6 @@ class Validator(ABC):
 
 class expiryValidator(Validator):
     def validate(self,coupon:Coupon_schema,fare):
-        
-        # search_coupon=db.query(Coupon).filter(
-        #     Coupon.couponId==coupon.couponId
-        # )
         
         nowTime=datetime.now()
         expired=False
