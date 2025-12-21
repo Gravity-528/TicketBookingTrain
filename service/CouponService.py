@@ -44,7 +44,7 @@ class CouponService:
         expiry=expiryValidator()
         min_fare=min_fare_check()
 
-        expiry.set_next(min_fare)
+        chain=expiry.set_next(min_fare)
 
         expiry.validate(coupon_data,fare)
 
