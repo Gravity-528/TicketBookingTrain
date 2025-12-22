@@ -1,4 +1,4 @@
-from main import razorpay_client
+from backend.main import razorpay_client
 import datetime
 from sqlalchemy.orm import Session
 from model import Booking

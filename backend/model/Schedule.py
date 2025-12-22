@@ -1,5 +1,5 @@
 from sqlalchemy import String,Integer,Column,DATE,DATETIME,ForeignKey,Enum
-from database import Base
+from backend.database import Base
 
 class Schedule(Base):
     __tablename__="schedules"

@@ -1,5 +1,5 @@
 from fastapi import FastAPI,Request
-from database import engine, Base
+from backend.database import engine, Base
 from redis.asyncio import Redis
 from dotenv import load_dotenv
 import os

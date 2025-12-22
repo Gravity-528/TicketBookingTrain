@@ -1,5 +1,5 @@
 from sqlalchemy import String,Integer,Column,DATE,DATETIME,Enum
-from database import Base
+from backend.database import Base
 
 class Coupon(Base):
     __tablename__="coupons"

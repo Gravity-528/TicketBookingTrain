@@ -1,5 +1,5 @@
 from sqlalchemy import String,Integer,Column,DATE,DATETIME
-from database import Base
+from backend.database import Base
 
 class Train(Base):
     __tablename__="trains"

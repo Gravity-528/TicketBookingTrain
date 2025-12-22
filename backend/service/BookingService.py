@@ -1,4 +1,4 @@
-from main import redis
+from backend.main import redis
 from schema.selected_seat import seatToBook
 import uuid
 from .CouponService import CouponService
