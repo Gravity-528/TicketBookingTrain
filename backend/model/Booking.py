@@ -1,5 +1,5 @@
 from sqlalchemy import String, Integer, Column, DATE, DATETIME, ForeignKey, Enum
-from database import Base
+from backend.database import Base
 import uuid
 
 class Booking(Base):
