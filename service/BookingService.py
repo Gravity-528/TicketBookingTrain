@@ -61,6 +61,5 @@ class BookingService:
                 couponId=seat_to_book.coupon_info.couponId
             )
 
-        ## proceed to razorpay payment ans wait for webhook
-        ## update entry in the table as reserved
+        
         pass
