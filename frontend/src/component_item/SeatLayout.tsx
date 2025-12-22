@@ -32,7 +32,7 @@ const SeatLayout = () => {
     }
   }
 
-  // console.log(seat)
+  
   return (
     <div className='w-full min-h-screen flex flex-row items-center justify-center border-white gap-6 '>
       <div className='grid grid-cols-5 gap-5 p-4'>
