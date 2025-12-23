@@ -1,4 +1,3 @@
-import React from 'react'
 import {Button} from '../components/ui/button'
 
 
@@ -34,15 +33,15 @@ const SeatLayout = () => {
 
   
   return (
-    <div className='w-full min-h-screen flex flex-row items-center justify-center border-white gap-6 '>
-      <div className='grid grid-cols-5 gap-5 p-4'>
+    <div className='w-full min-h-screen flex flex-row items-center justify-center gap-6 '>
+      <div className='grid grid-cols-5 gap-5 p-4 border border-white'>
         {seat.map((x,ind)=>{
            return(
             <Button className={`bg-white text-black w-8 h-8 ${x.status==="available" && "hover:bg-green-400"} ${x.status !== "available" && "bg-yellow-400"}`} disabled={x.status!=="available"}>{x.seatNo}</Button>
            )
         })}
       </div>
-      <div className='grid grid-cols-5 gap-5 p-4'>
+      <div className='grid grid-cols-5 gap-5 p-4 border border-white'>
         {seat.map((x,ind)=>{
            return(
             <Button className={`bg-white text-black w-8 h-8 ${x.status==="available" && "hover:bg-green-400"} ${x.status !== "available" && "bg-yellow-400"}`} disabled={x.status!=="available"}>{x.seatNo}</Button>
