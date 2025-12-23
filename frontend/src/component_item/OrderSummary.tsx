@@ -7,36 +7,38 @@ type seat = {
 }
 
 type SeatProp = {
-    arr:{
-    seatBook: Array<seat>,
-    CouponApplied: CouponProp
-    }
+     seatBook: Array<seat>,
+     CouponApplied: CouponProp
 }
 
-const OrderSummary = ({arr}:SeatProp) => {
-    
+type OrderSummaryProps = {
+    arr: SeatProp
+}
+
+const OrderSummary = ({arr}:OrderSummaryProps) => {
+    console.log(arr)
     let sum=0
     const color = [{ type: "A", color: "bg-blue-300" }, { type: "B", color: "bg-green-400" },
     { type: "C", color: "bg-yellow-400" }, { type: "D", color: "bg-orange-400" },
     { type: "E", color: "bg-purple-400" }]
 
     return (
-        <div className="flex flex-row justify-center">
-            <div className="text-white w-150 h-100 border border-white">
-                <div className="flex justify-center text-4xl "><div>Booking Summary</div></div>
-                <div>Seat To be Booked: {arr.seatBook.map((x) => {
+        <div className="flex flex-row justify-center mx-10">
+            <div className="text-white w-500 h-auto border border-white px-5">
+                <div className="flex justify-center text-4xl m-4"><div>Booking Summary</div></div>
+                <div className="m-4">Seat To be Booked: {arr.seatBook.map((x) => {
                     let ch=x.seatId[0]
                     const val=color.find(item => item.type === ch);
                     sum=sum+x.price;
                     return (
-                        <span className={`${val?.color} gap-1`}>{x.seatId}</span>
+                        <span className={`${val?.color} m-2 w-4 h-4 p-2`}>{x.seatId}</span>
                     )
                 })}</div>
-                <div>Coupon Applied: <div>{arr.CouponApplied.couponName}</div></div>
-                <div className="flex flex-row justify-end m-2"><div>Total: {sum}</div></div>
-                <div className="flex flex-row justify-end gap-2">
-                    <div><Button>Edit</Button></div>
-                    <div><Button>Proceed</Button></div>
+                <div className="m-4">Coupon Applied: <span>{arr.CouponApplied.couponName}</span></div>
+                <div className="flex flex-row justify-end m-4"><div>Total: {sum}</div></div>
+                <div className="flex flex-row justify-end gap-2 m-4">
+                    <div><Button className="border border-white hover:bg-white hover:text-black">Edit</Button></div>
+                    <div><Button className="border border-white hover:bg-white hover:text-black">Proceed</Button></div>
                 </div>
 
             </div>

@@ -1,4 +1,4 @@
-// import OrderSummary from "@/component_item/OrderSummary"
+import OrderSummary from "@/component_item/OrderSummary"
 
 const OrderPage = () => {
     const arr = {
@@ -16,7 +16,7 @@ const OrderPage = () => {
     }
     return (
         <div>
-            {/* <OrderSummary /> */}
+            <OrderSummary arr={arr} />
         </div>
     )
 }
