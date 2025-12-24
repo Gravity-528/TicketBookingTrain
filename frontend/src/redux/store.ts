@@ -9,6 +9,6 @@ export type AppDispatch = typeof store.dispatch
 export const store = configureStore({
   reducer: {
     cart: cartReducer,
-    couponSelected:SelectedCouponReducer
+    couponSelected: SelectedCouponReducer
   }
 })
