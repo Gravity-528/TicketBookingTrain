@@ -1,6 +1,7 @@
 import CouponCard from "@/component_item/CouponCard"
 import OrderSummary from "@/component_item/OrderSummary"
 import SearchCoupon from "@/component_item/SearchCoupon"
+import {useState,useEffect} from "react"
 
 const OrderPage = () => {
     const arr = {
@@ -50,6 +51,7 @@ const OrderPage = () => {
                 min_fare: 300
             },
         ]
+
     return (
         <div>
             <div>

@@ -34,9 +34,6 @@ const SelectedCouponSlice = createSlice({
         setAllCoupons: (state: AllCoupon, action: PayloadAction<CouponItem[]>) => {
             state.AllCoupon = action.payload
         },
-        updateCoupon: (state: AllCoupon, action: PayloadAction<CouponItem>) => {
-            state.selectedCoupon = action.payload
-        },
         SelectCoupon: (state: AllCoupon, action: PayloadAction<CouponItem>) => {
             let id = action.payload.couponId
             let arr = state.AllCoupon
@@ -44,7 +41,7 @@ const SelectedCouponSlice = createSlice({
             for (let i = 0; i < arr.length; i++) {
                 if (arr[i].couponId == id) {
                     arr[i].selected = true
-                    updateCoupon(arr[i])
+                    state.selectedCoupon=arr[i]
                     continue
                 }
                 else{
@@ -57,5 +54,5 @@ const SelectedCouponSlice = createSlice({
 })
 
 
-export const { updateCoupon } = SelectedCouponSlice.actions
+export const { setAllCoupons,SelectCoupon } = SelectedCouponSlice.actions
 export default SelectedCouponSlice.reducer
