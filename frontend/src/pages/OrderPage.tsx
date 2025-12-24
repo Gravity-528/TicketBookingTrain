@@ -1,4 +1,6 @@
+import CouponCard from "@/component_item/CouponCard"
 import OrderSummary from "@/component_item/OrderSummary"
+import SearchCoupon from "@/component_item/SearchCoupon"
 
 const OrderPage = () => {
     const arr = {
@@ -14,9 +16,63 @@ const OrderPage = () => {
             min_fare: 300
         }
     }
+    const coupon=[
+            {
+                couponId: "abcde",
+                couponName: "HOLIDAY21",
+                discount: 500,
+                type: "FLAT",
+                expire_by: "30 dec 2025",
+                min_fare: 300
+            },
+            {
+                couponId: "abcde",
+                couponName: "HOLIDAY21",
+                discount: 500,
+                type: "FLAT",
+                expire_by: "30 dec 2025",
+                min_fare: 300
+            },
+            {
+                couponId: "abcde",
+                couponName: "HOLIDAY21",
+                discount: 500,
+                type: "FLAT",
+                expire_by: "30 dec 2025",
+                min_fare: 300
+            },
+            {
+                couponId: "abcde",
+                couponName: "HOLIDAY21",
+                discount: 500,
+                type: "FLAT",
+                expire_by: "30 dec 2025",
+                min_fare: 300
+            },
+        ]
     return (
         <div>
-            <OrderSummary arr={arr} />
+            <div>
+                <div className="flex flex-row justify-center"><div className="text-4xl text-white mb-15">Proceed Your Booking</div></div>
+                <div>
+                    <div className="flex justify-center">
+                        <div className="text-3xl text-white my-5">Search Coupon</div>
+                    </div>
+                    <div className="flex flex-row justify-center"><p className="text-white">Enter Coupon to Search (for ex, ACT21 HOLIDAY22 etc....)</p></div>
+                    <SearchCoupon />
+                </div>
+
+                <div className="mb-16"><OrderSummary arr={arr} /></div>
+                <div>
+                    <div className="flex flex-row justify-center"><div className="text-white">Available Coupons</div></div>
+                    {/* <div><CouponCard {...arr.CouponApplied} /></div> */}
+                    <div>{coupon.map((item)=>{
+                        return(
+                            <CouponCard {...item}/>
+                        )
+                    })}</div>
+                </div>
+            </div>
         </div>
     )
 }

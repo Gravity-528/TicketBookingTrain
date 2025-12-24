@@ -23,8 +23,8 @@ const OrderSummary = ({arr}:OrderSummaryProps) => {
     { type: "E", color: "bg-purple-400" }]
 
     return (
-        <div className="flex flex-row justify-center mx-10">
-            <div className="text-white w-500 h-auto border border-white px-5">
+        <div className="flex flex-row justify-center mx-16">
+            <div className="text-white w-500 h-auto border border-white px-5 rounded-lg">
                 <div className="flex justify-center text-4xl m-4"><div>Booking Summary</div></div>
                 <div className="m-4">Seat To be Booked: {arr.seatBook.map((x) => {
                     let ch=x.seatId[0]
@@ -35,7 +35,13 @@ const OrderSummary = ({arr}:OrderSummaryProps) => {
                     )
                 })}</div>
                 <div className="m-4">Coupon Applied: <span>{arr.CouponApplied.couponName}</span></div>
-                <div className="flex flex-row justify-end m-4"><div>Total: {sum}</div></div>
+                <div className="flex flex-row justify-between m-4">
+                    <div>
+                        <div>Total Discount: 500</div>
+                        <div>Type of Discount: Percentage</div>
+                    </div>
+                    <div>Total: {sum-500}</div>
+                </div>
                 <div className="flex flex-row justify-end gap-2 m-4">
                     <div><Button className="border border-white hover:bg-white hover:text-black">Edit</Button></div>
                     <div><Button className="border border-white hover:bg-white hover:text-black">Proceed</Button></div>
