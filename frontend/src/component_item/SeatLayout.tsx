@@ -1,6 +1,6 @@
 import { Button } from '../components/ui/button'
 import { useState } from 'react'
-
+import { useNavigate } from 'react-router-dom'
 type SeatType = {
   seatNo: string,
   price: number,
@@ -8,9 +8,10 @@ type SeatType = {
 }
 
 const SeatLayout = () => {
+  const navigate=useNavigate()
   const [SelectSeat, SetSelectSeat] = useState<SeatType[]>([]);
 
-  //-------mimick
+  //-------mimick------------------------------------------
   let seat: SeatType[] = []
 
   for (let i = 0; i < 5; i++) {
@@ -40,7 +41,7 @@ const SeatLayout = () => {
       seat2.push(seatObj)
     }
   }
-  //-------
+  //-----------------------------------------------------------------
   const isSelected = (seatNo: string) =>
     SelectSeat.some(s => s.seatNo === seatNo)
 
@@ -52,9 +53,15 @@ const SeatLayout = () => {
     )
   }
 
+  const Proceed=()=>{
+    navigate('/bookingConfirm')
+  }
+
 
   return (
-    <div className='w-full min-h-screen flex flex-row items-center justify-center gap-6 '>
+    <>
+    <div className='w-full flex flex-col items-center justify-center gap-6 mt-10'>
+      <div><div className='text-white text-2xl'>Book Your Seat</div></div>
       <div className='grid grid-cols-5 gap-5 p-4 border border-white'>
         {seat.map((x) => {
           return (
@@ -73,7 +80,11 @@ const SeatLayout = () => {
           )
         })}
       </div>
+      <div className=''><Button className='bg-yellow-400 text-black hover:bg-green-400' onClick={Proceed}>Proceed</Button></div>
     </div>
+    
+    </>
+
   )
 }
 

@@ -3,6 +3,7 @@ import "./App.css";
 // import {SearchTrain} from "./component_item/SearchTrain"
 // import SearchPage from "./pages/SearchPage";
 import SeatLayout from "./component_item/SeatLayout";
+import OrderPage from "./pages/OrderPage";
 // import CouponCard from "./component_item/CouponCard";
 // import OrderSummary from "./component_item/OrderSummary";
 // import OrderPage from "./pages/OrderPage";
@@ -12,6 +13,7 @@ function App() {
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<SeatLayout/>} />
+        <Route path="/BookingConfirm" element={<OrderPage/>}/>
       </Routes>
     </BrowserRouter>
   );

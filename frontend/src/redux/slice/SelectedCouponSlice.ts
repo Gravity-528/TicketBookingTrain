@@ -31,8 +31,14 @@ const SelectedCouponSlice = createSlice({
     name: "couponSelected",
     initialState,
     reducers: {
-        setAllCoupons: (state: AllCoupon, action: PayloadAction<CouponItem[]>) => {
-            state.AllCoupon = action.payload
+        addCoupon:(state:AllCoupon,action:PayloadAction<CouponItem>)=>{
+           let ch=state.AllCoupon.some(item=> item.couponId===action.payload.couponId)
+           if(ch==true){return}
+
+           state.AllCoupon.push(action.payload)
+        },
+        removeCoupon: (state:AllCoupon,action: PayloadAction<CouponItem>)=>{
+           state.AllCoupon=state.AllCoupon.filter(item => item.couponId!==action.payload.couponId)
         },
         SelectCoupon: (state: AllCoupon, action: PayloadAction<CouponItem>) => {
             let id = action.payload.couponId
@@ -47,12 +53,11 @@ const SelectedCouponSlice = createSlice({
                 else{
                     arr[i].selected=false
                 }
-            }
-            
+            }   
         }
     }
 })
 
 
-export const { setAllCoupons,SelectCoupon } = SelectedCouponSlice.actions
+export const { addCoupon,removeCoupon,SelectCoupon} = SelectedCouponSlice.actions
 export default SelectedCouponSlice.reducer
