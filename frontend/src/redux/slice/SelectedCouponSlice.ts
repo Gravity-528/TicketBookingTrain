@@ -1,3 +1,4 @@
+import type { CouponAction } from "@/type/coupon/coupon";
 import { createSlice } from "@reduxjs/toolkit";
 import type { PayloadAction } from "@reduxjs/toolkit";
 
@@ -42,13 +43,13 @@ const SelectedCouponSlice = createSlice({
         removeCoupon: (state:AllCoupon,action: PayloadAction<CouponItem>)=>{
            state.AllCoupon=state.AllCoupon.filter(item => item.couponId!==action.payload.couponId)
         },
-        SelectCoupon: (state: AllCoupon, action: PayloadAction<any>) => {
-            let id = action.payload.couponId
+        SelectCoupon: (state: AllCoupon, action: PayloadAction<CouponAction>) => {
+            let id = action.payload.coupon.couponId
             let arr = state.AllCoupon
 
             for (let i = 0; i < arr.length; i++) {
                 if (arr[i].couponId == id) {
-                    arr[i].selected = true
+                    arr[i].selected = action.payload.status
                     state.selectedCoupon=arr[i]
                     continue
                 }

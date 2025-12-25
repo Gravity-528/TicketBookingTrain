@@ -4,6 +4,7 @@ import { Percent } from "lucide-react"
 import { useDispatch,useSelector } from "react-redux"
 import type { RootState } from "../redux/store"
 import { SelectCoupon } from "@/redux/slice/SelectedCouponSlice"
+import type { CouponAction } from "@/type/coupon/coupon"
 
 export type CouponProp={
     couponId:string,
@@ -16,26 +17,43 @@ export type CouponProp={
 
 
 
+
+
 const CouponCard = (props:CouponProp) => {
     const dispatch=useDispatch()
     const coupon=useSelector(
             (state:RootState)=> state.couponSelected.AllCoupon
         )
-    const [selected,setSelected]=useState(false)
+    const select=useSelector(
+        (state:RootState)=> state.couponSelected.selectedCoupon
+    )
+    const [selected,setSelected]=useState<Boolean>(false)
 
     const Toggle=()=>{
-        dispatch(SelectCoupon(props))
-        return setSelected(prev=> !prev)
+        const obj:CouponAction={
+            coupon:props,
+            status:!selected
+        }
+        dispatch(SelectCoupon(obj))
+        // return setSelected(prev=> !prev)
     }
 
     useEffect(()=>{
-      console.log("coupon is",coupon)
+      console.log("coupon is",select)
+    },[coupon,select])
+
+    useEffect(()=>{
+       let ch=coupon.some(x=>x.couponId===props.couponId && x.selected==true)
+       if(ch==true){
+         setSelected(true)
+       }else{
+        setSelected(false)
+       }
     },[coupon])
 
-    // useEffect(()=>{},[selected])
     return (
         <div>
-            <div className = {`h-24 ${selected==true && "bg-green-100"} ${selected==true ? "border-4 border-green-500" : "border border-white"} ${selected==true ? "text-black": "text-white" } flex flex-row justify-between rounded-sm mx-8 my-4`}>
+            <div className = {`h-24 bg-[var(--background-soft)] ${selected==true && "bg-green-100"} ${selected==true ? "border-4 border-green-500" : "border border-white"} ${selected==true ? "text-black": "text-white" } flex flex-row justify-between rounded-sm mx-8 my-4`}>
                 <div className="flex flex-row gap-2 m-2">
                 <div className="flex flex-col justify-center items-center m-2"><Percent className={`${selected==true ?"bg-green-600" :"bg-yellow-400"} text-black h-8 w-8`}></Percent></div>
                 <div>
@@ -44,7 +62,7 @@ const CouponCard = (props:CouponProp) => {
                     <p>Expires {props.expire_by}</p>
                 </div>
                 </div>
-                <div className="flex flex-col justify-center items-center m-4"><Button className={`${selected==true? "bg-green-600 text-white hover:bg-red-500 hover:text-black":"border border-white text-white hover:bg-yellow-400 hover:text-black"}`} onClick={Toggle}>{selected==true?"Remove":"+ Apply coupon"} </Button></div>
+                <div className="flex flex-col justify-center items-center m-4"><Button className={`${selected==true? "bg-green-600 text-white hover:bg-red-500 hover:text-black":"border border-white/30 text-white hover:bg-yellow-400 hover:text-black bg-[var(--background)]"}`} onClick={Toggle}>{selected==true?"Remove":"+ Apply coupon"} </Button></div>
             </div>
         </div>
     )

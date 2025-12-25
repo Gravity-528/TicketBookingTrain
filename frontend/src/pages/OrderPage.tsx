@@ -12,7 +12,7 @@ const OrderPage = () => {
     const coup=useSelector(
         (state:RootState)=> state.couponSelected.AllCoupon
     )
-    //----------------------mimic-----------------------------------------------
+    //----------------------mimic-----------------------------------------------------------
     const arr = {
         seatBook: [{ seatId: "A1", price: 200 }, { seatId: "B1", price: 400 }, { seatId: "C1", price: 300 }
             , { seatId: "D1", price: 600 }, { seatId: "E1", price: 300 }

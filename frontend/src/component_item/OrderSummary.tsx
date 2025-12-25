@@ -24,7 +24,7 @@ const OrderSummary = ({arr}:OrderSummaryProps) => {
 
     return (
         <div className="flex flex-row justify-center mx-16">
-            <div className="text-white w-500 h-auto border border-white px-5 rounded-lg">
+            <div className="text-white w-500 h-auto border border-white px-5 rounded-lg bg-[var(--background-soft)]">
                 <div className="flex justify-center text-4xl m-4"><div>Booking Summary</div></div>
                 <div className="m-4">Seat To be Booked: {arr.seatBook.map((x) => {
                     let ch=x.seatId[0]

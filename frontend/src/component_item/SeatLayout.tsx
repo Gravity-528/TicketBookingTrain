@@ -11,7 +11,7 @@ const SeatLayout = () => {
   const navigate=useNavigate()
   const [SelectSeat, SetSelectSeat] = useState<SeatType[]>([]);
 
-  //-------mimick------------------------------------------
+//-------mimick------------------------------------------------------------------------------
   let seat: SeatType[] = []
 
   for (let i = 0; i < 5; i++) {
@@ -41,7 +41,7 @@ const SeatLayout = () => {
       seat2.push(seatObj)
     }
   }
-  //-----------------------------------------------------------------
+//-----------------------------------------------------------------------------------------------------------
   const isSelected = (seatNo: string) =>
     SelectSeat.some(s => s.seatNo === seatNo)
 
