@@ -1,14 +1,18 @@
 import { useDispatch,useSelector } from "react-redux"
-import { setAllCoupons, SelectCoupon } from "../redux/slice/SelectedCouponSlice"
+import { addCoupon, SelectCoupon } from "../redux/slice/SelectedCouponSlice"
 import CouponCard from "@/component_item/CouponCard"
 import OrderSummary from "@/component_item/OrderSummary"
 import SearchCoupon from "@/component_item/SearchCoupon"
 import {useState,useEffect} from "react"
+import type { RootState } from "@/redux/store"
 
 const OrderPage = () => {
     
     const dispatch = useDispatch()
-
+    const coup=useSelector(
+        (state:RootState)=> state.couponSelected.AllCoupon
+    )
+    //----------------------mimic-----------------------------------------------
     const arr = {
         seatBook: [{ seatId: "A1", price: 200 }, { seatId: "B1", price: 400 }, { seatId: "C1", price: 300 }
             , { seatId: "D1", price: 600 }, { seatId: "E1", price: 300 }
@@ -24,7 +28,7 @@ const OrderPage = () => {
     }
     const coupon=[
             {
-                couponId: "abcde",
+                couponId: "1",
                 couponName: "HOLIDAY21",
                 discount: 500,
                 type: "FLAT",
@@ -33,7 +37,7 @@ const OrderPage = () => {
                 selected:false
             },
             {
-                couponId: "abcde",
+                couponId: "2",
                 couponName: "HOLIDAY21",
                 discount: 500,
                 type: "FLAT",
@@ -42,7 +46,7 @@ const OrderPage = () => {
                 selected:false
             },
             {
-                couponId: "abcde",
+                couponId: "3",
                 couponName: "HOLIDAY21",
                 discount: 500,
                 type: "FLAT",
@@ -51,7 +55,7 @@ const OrderPage = () => {
                 selected:false
             },
             {
-                couponId: "abcde",
+                couponId: "4",
                 couponName: "HOLIDAY21",
                 discount: 500,
                 type: "FLAT",
@@ -60,10 +64,19 @@ const OrderPage = () => {
                 selected:false
             },
         ]
+        //-----------------------------------------------------------------------------------
 
         useEffect(()=>{
-          dispatch(setAllCoupons(coupon))
+        //   dispatch(setAllCoupons(coupon))
+        coupon.forEach((item)=>{
+            console.log(item)
+            dispatch(addCoupon(item))
+        })
+        // console.log(coup)
         },[])
+        // useEffect(()=>{
+        //   console.log("coup is:",coup)
+        // },[coup])
 
     return (
         <div>

@@ -1,6 +1,9 @@
-import { useState } from "react"
+import { useEffect, useState} from "react"
 import { Button } from "@/components/ui/button"
 import { Percent } from "lucide-react"
+import { useDispatch,useSelector } from "react-redux"
+import type { RootState } from "../redux/store"
+import { SelectCoupon } from "@/redux/slice/SelectedCouponSlice"
 
 export type CouponProp={
     couponId:string,
@@ -11,12 +14,23 @@ export type CouponProp={
     min_fare:number
 }
 
+
+
 const CouponCard = (props:CouponProp) => {
+    const dispatch=useDispatch()
+    const coupon=useSelector(
+            (state:RootState)=> state.couponSelected.AllCoupon
+        )
     const [selected,setSelected]=useState(false)
 
     const Toggle=()=>{
+        dispatch(SelectCoupon(props))
         return setSelected(prev=> !prev)
     }
+
+    useEffect(()=>{
+      console.log("coupon is",coupon)
+    },[coupon])
     return (
         <div>
             <div className = {`h-24 ${selected==true && "bg-green-100"} ${selected==true ? "border-4 border-green-500" : "border border-white"} ${selected==true ? "text-black": "text-white" } flex flex-row justify-between rounded-sm mx-8 my-4`}>

@@ -7,6 +7,7 @@ type CouponItem = {
     discount: number,
     type: string,
     min_fare: number,
+    expire_by:string,
     selected: Boolean
 }
 
@@ -22,6 +23,7 @@ const initialState: AllCoupon = {
         discount: 0,
         type: "Not Applicable",
         min_fare: 0,
+        expire_by:"",
         selected: false
     },
     AllCoupon: []
@@ -40,7 +42,7 @@ const SelectedCouponSlice = createSlice({
         removeCoupon: (state:AllCoupon,action: PayloadAction<CouponItem>)=>{
            state.AllCoupon=state.AllCoupon.filter(item => item.couponId!==action.payload.couponId)
         },
-        SelectCoupon: (state: AllCoupon, action: PayloadAction<CouponItem>) => {
+        SelectCoupon: (state: AllCoupon, action: PayloadAction<any>) => {
             let id = action.payload.couponId
             let arr = state.AllCoupon
 
