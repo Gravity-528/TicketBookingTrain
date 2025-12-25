@@ -31,6 +31,8 @@ const CouponCard = (props:CouponProp) => {
     useEffect(()=>{
       console.log("coupon is",coupon)
     },[coupon])
+
+    // useEffect(()=>{},[selected])
     return (
         <div>
             <div className = {`h-24 ${selected==true && "bg-green-100"} ${selected==true ? "border-4 border-green-500" : "border border-white"} ${selected==true ? "text-black": "text-white" } flex flex-row justify-between rounded-sm mx-8 my-4`}>
