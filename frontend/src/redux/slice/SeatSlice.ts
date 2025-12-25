@@ -39,3 +39,4 @@ const seatSlice=createSlice({
 })
 
 export const {addSeat,removeSeat,clearState}=seatSlice.actions
+export default seatSlice.reducer

@@ -3,7 +3,7 @@ import { Button } from "@/components/ui/button"
 import { Percent } from "lucide-react"
 import { useDispatch,useSelector } from "react-redux"
 import type { RootState } from "../redux/store"
-import { SelectCoupon } from "@/redux/slice/SelectedCouponSlice"
+import { SelectCoupon ,clearCouponSelected} from "@/redux/slice/SelectedCouponSlice"
 import type { CouponAction } from "@/type/coupon/coupon"
 
 export type CouponProp={
@@ -14,10 +14,6 @@ export type CouponProp={
     expire_by: string,
     min_fare:number
 }
-
-
-
-
 
 const CouponCard = (props:CouponProp) => {
     const dispatch=useDispatch()
@@ -34,8 +30,10 @@ const CouponCard = (props:CouponProp) => {
             coupon:props,
             status:!selected
         }
-        dispatch(SelectCoupon(obj))
-        // return setSelected(prev=> !prev)
+          dispatch(SelectCoupon(obj))
+        if(selected==true){
+          dispatch(clearCouponSelected())
+        }
     }
 
     useEffect(()=>{

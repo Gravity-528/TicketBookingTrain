@@ -1,6 +1,10 @@
 import { Button } from '../components/ui/button'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import type { RootState } from '@/redux/store'
+import { addSeat, removeSeat, clearState } from '@/redux/slice/SeatSlice'
+
 type SeatType = {
   seatNo: string,
   price: number,
@@ -8,10 +12,15 @@ type SeatType = {
 }
 
 const SeatLayout = () => {
-  const navigate=useNavigate()
+  const dispatch = useDispatch()
+  const navigate = useNavigate()
   const [SelectSeat, SetSelectSeat] = useState<SeatType[]>([]);
 
-//-------mimick------------------------------------------------------------------------------
+  const seatSelected = useSelector(
+    (state: RootState) => state.seatSelected
+  )
+
+  //-------mimick------------------------------------------------------------------------------
   let seat: SeatType[] = []
 
   for (let i = 0; i < 5; i++) {
@@ -41,25 +50,36 @@ const SeatLayout = () => {
       seat2.push(seatObj)
     }
   }
-//-----------------------------------------------------------------------------------------------------------
+  //-----------------------------------------------------------------------------------------------------------
   const isSelected = (seatNo: string) =>
     SelectSeat.some(s => s.seatNo === seatNo)
 
   const setSeat = (obj: SeatType) => {
-    SetSelectSeat(prev =>
-      prev.some(s => s.seatNo === obj.seatNo)
-        ? prev.filter(s => s.seatNo !== obj.seatNo) // unselect
-        : [...prev, obj]                            // select
-    )
-  }
+  SetSelectSeat(prev => {
+    const isSelected = prev.some(s => s.seatNo === obj.seatNo)
 
-  const Proceed=()=>{
-    navigate('/bookingConfirm')
-  }
+    if (isSelected) {
+      dispatch(removeSeat(obj))
+      return prev.filter(s => s.seatNo !== obj.seatNo)
+    } else {
+      dispatch(addSeat(obj))
+      return [...prev, obj]
+    }
+  })
+}
 
 
-  return (
-    <>
+useEffect(() => {
+  dispatch(clearState())
+}, [])
+
+const Proceed = () => {
+  navigate('/bookingConfirm')
+}
+
+
+return (
+  <>
     <div className='w-full flex flex-col items-center justify-center gap-6 mt-10'>
       <div><div className='text-white text-2xl'>Book Your Seat</div></div>
       <div className='grid grid-cols-5 gap-5 p-4 border border-white'>
@@ -67,7 +87,7 @@ const SeatLayout = () => {
           return (
             <Button className={`bg-white text-black w-8 h-8 ${isSelected(x.seatNo)
               ? 'bg-yellow-400 hover:bg-yellow-400'
-              : 'bg-white hover:bg-green-400'} ${x.status === "available" && isSelected(x.seatNo)==false && "hover:bg-green-400"} ${x.status !== "available" && "bg-yellow-400"}`} disabled={x.status !== "available"} onClick={() => setSeat(x)}>{x.seatNo}</Button>
+              : 'bg-white hover:bg-green-400'} ${x.status === "available" && isSelected(x.seatNo) == false && "hover:bg-green-400"} ${x.status !== "available" && "bg-yellow-400"}`} disabled={x.status !== "available"} onClick={() => setSeat(x)}>{x.seatNo}</Button>
           )
         })}
       </div>
@@ -82,10 +102,10 @@ const SeatLayout = () => {
       </div>
       <div className=''><Button className='bg-yellow-400 text-black hover:bg-green-400' onClick={Proceed}>Proceed</Button></div>
     </div>
-    
-    </>
 
-  )
+  </>
+
+)
 }
 
 export default SeatLayout

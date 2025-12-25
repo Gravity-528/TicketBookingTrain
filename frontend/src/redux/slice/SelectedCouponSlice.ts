@@ -8,7 +8,7 @@ type CouponItem = {
     discount: number,
     type: string,
     min_fare: number,
-    expire_by:string,
+    expire_by: string,
     selected: Boolean
 }
 
@@ -24,7 +24,7 @@ const initialState: AllCoupon = {
         discount: 0,
         type: "Not Applicable",
         min_fare: 0,
-        expire_by:"",
+        expire_by: "",
         selected: false
     },
     AllCoupon: []
@@ -34,14 +34,14 @@ const SelectedCouponSlice = createSlice({
     name: "couponSelected",
     initialState,
     reducers: {
-        addCoupon:(state:AllCoupon,action:PayloadAction<CouponItem>)=>{
-           let ch=state.AllCoupon.some(item=> item.couponId===action.payload.couponId)
-           if(ch==true){return}
+        addCoupon: (state: AllCoupon, action: PayloadAction<CouponItem>) => {
+            let ch = state.AllCoupon.some(item => item.couponId === action.payload.couponId)
+            if (ch == true) { return }
 
-           state.AllCoupon.push(action.payload)
+            state.AllCoupon.push(action.payload)
         },
-        removeCoupon: (state:AllCoupon,action: PayloadAction<CouponItem>)=>{
-           state.AllCoupon=state.AllCoupon.filter(item => item.couponId!==action.payload.couponId)
+        removeCoupon: (state: AllCoupon, action: PayloadAction<CouponItem>) => {
+            state.AllCoupon = state.AllCoupon.filter(item => item.couponId !== action.payload.couponId)
         },
         SelectCoupon: (state: AllCoupon, action: PayloadAction<CouponAction>) => {
             let id = action.payload.coupon.couponId
@@ -50,17 +50,28 @@ const SelectedCouponSlice = createSlice({
             for (let i = 0; i < arr.length; i++) {
                 if (arr[i].couponId == id) {
                     arr[i].selected = action.payload.status
-                    state.selectedCoupon=arr[i]
+                    state.selectedCoupon = arr[i]
                     continue
                 }
-                else{
-                    arr[i].selected=false
+                else {
+                    arr[i].selected = false
                 }
-            }   
+            }
+        },
+        clearCouponSelected:(state:AllCoupon)=>{
+            state.selectedCoupon={
+                couponId: "",
+                    couponName: "Not Selected",
+                    discount: 0,
+                    type: "Not Applicable",
+                    min_fare: 0,
+                    expire_by: "",
+                    selected: false
+            }
         }
     }
 })
 
 
-export const { addCoupon,removeCoupon,SelectCoupon} = SelectedCouponSlice.actions
+export const { addCoupon, removeCoupon, SelectCoupon,clearCouponSelected } = SelectedCouponSlice.actions
 export default SelectedCouponSlice.reducer
