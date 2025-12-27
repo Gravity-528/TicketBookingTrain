@@ -39,7 +39,7 @@ const OrderPage = () => {
             {
                 couponId: "2",
                 couponName: "HOLIDAY21",
-                discount: 500,
+                discount: 50,
                 type: "FLAT",
                 expire_by: "30 dec 2025",
                 min_fare: 300,
@@ -48,7 +48,7 @@ const OrderPage = () => {
             {
                 couponId: "3",
                 couponName: "HOLIDAY21",
-                discount: 500,
+                discount: 50,
                 type: "FLAT",
                 expire_by: "30 dec 2025",
                 min_fare: 300,
@@ -57,7 +57,7 @@ const OrderPage = () => {
             {
                 couponId: "4",
                 couponName: "HOLIDAY21",
-                discount: 500,
+                discount: 50,
                 type: "FLAT",
                 expire_by: "30 dec 2025",
                 min_fare: 300,

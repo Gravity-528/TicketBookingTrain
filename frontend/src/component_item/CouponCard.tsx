@@ -23,6 +23,9 @@ const CouponCard = (props:CouponProp) => {
     const select=useSelector(
         (state:RootState)=> state.couponSelected.selectedCoupon
     )
+    const total=useSelector(
+        (state:RootState)=> state.seatSelected.totalPrice
+    )
     const [selected,setSelected]=useState<Boolean>(false)
 
     const Toggle=()=>{
@@ -60,7 +63,7 @@ const CouponCard = (props:CouponProp) => {
                     <p>Expires {props.expire_by}</p>
                 </div>
                 </div>
-                <div className="flex flex-col justify-center items-center m-4"><Button className={`${selected==true? "bg-green-600 text-white hover:bg-red-500 hover:text-black":"border border-white/30 text-white hover:bg-yellow-400 hover:text-black bg-[var(--background)]"}`} onClick={Toggle}>{selected==true?"Remove":"+ Apply coupon"} </Button></div>
+                <div className="flex flex-col justify-center items-center m-4"><Button className={`${selected==true? "bg-green-600 text-white hover:bg-red-500 hover:text-black":"border border-white/30 text-white hover:bg-yellow-400 hover:text-black bg-[var(--background)]"}`} onClick={Toggle} disabled={total< props.discount+200 || props.min_fare>=total}>{selected==true?"Remove":"+ Apply coupon"} </Button></div>
             </div>
         </div>
     )
