@@ -15,7 +15,7 @@ const SearchPage = () => {
   const [station,setStation]=useState<StationType[]>([])
 
   const fetchData=async()=>{
-     const allStation=await axios.get("api/v1/fetAllStation")
+     const allStation=await axios.get("api/v1/fetchAllStation")
      setStation(allStation.data)
   }
 
