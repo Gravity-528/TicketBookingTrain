@@ -40,7 +40,18 @@ const frameworks = [
   },
 ]
 
-export function SearchTrain() {
+type StationType={
+  label:string,
+  value:string
+}
+
+type propsType={
+  station:StationType[]
+}
+
+export function SearchTrain({station}:propsType) {
+
+  const stationsFind=station
   const [open, setOpen] = React.useState(false)
   const [value, setValue] = React.useState("")
 
@@ -54,7 +65,7 @@ export function SearchTrain() {
           className="w-[300px] justify-between text-white"
         >
           {value
-            ? frameworks.find((framework) => framework.value === value)?.label
+            ? stationsFind.find((station) => station.value === value)?.label
             : "Select Your Station..."}
           <ChevronsUpDown className="opacity-50" />
         </Button>
@@ -65,20 +76,20 @@ export function SearchTrain() {
           <CommandList>
             <CommandEmpty>No framework found.</CommandEmpty>
             <CommandGroup>
-              {frameworks.map((framework) => (
+              {stationsFind.map((station) => (
                 <CommandItem
-                  key={framework.value}
-                  value={framework.value}
+                  key={station.value}
+                  value={station.value}
                   onSelect={(currentValue) => {
                     setValue(currentValue === value ? "" : currentValue)
                     setOpen(false)
                   }}
                 >
-                  {framework.label}
+                  {station.label}
                   <Check
                     className={cn(
                       "ml-auto",
-                      value === framework.value ? "opacity-100" : "opacity-0"
+                      value === station.value ? "opacity-100" : "opacity-0"
                     )}
                   />
                 </CommandItem>
